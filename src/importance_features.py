@@ -108,7 +108,7 @@ def importancia_caracteristicas():
     )
     ax2.set_title('Sin Redshift (Modelo entrenado)', fontsize=12, fontweight='bold', pad=15)
     
-    plt.suptitle('XGBOOST: DISTRIBUCIÓN DE LA IMPORTANCIA DE LAS VARIABLES', fontsize=14, fontweight='bold', y=0.98)
+    plt.suptitle('XGBOOST: IMPORTANCIA DE LAS CARACTERÍSTICAS', fontsize=14, fontweight='bold', y=0.98)
     ruta_xgb = os.path.join(ruta_figuras, 'importancia_redshift_XGB.png')
     plt.tight_layout()
     plt.savefig(ruta_xgb, dpi=300, bbox_inches='tight')
