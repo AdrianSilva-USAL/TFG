@@ -8,7 +8,6 @@ La solución incluye la ingeniería de datos, el entrenamiento optimizado de mod
 
 ## 📁 Estructura del Proyecto
 
-```text
 Desarrollo_TFG/
 ├── data/                     # Datasets del proyecto (Raw y Processed)
 ├── models/                   # Modelos entrenados en formato serializado (.pkl)
@@ -25,68 +24,42 @@ Desarrollo_TFG/
 ├── requirements.txt          # Dependencias del proyecto de Python
 └── README.md                 # Guía de uso y documentación (este archivo)
 
-🛠️ Requisitos Previos
-Antes de ejecutar el proyecto, asegúrate de tener instalado en tu máquina local:
+## 🔄 Flujo de Trabajo y Ejecución de Scripts Básicos
+Si deseas replicar el ciclo de vida completo del desarrollo del modelo (desde la limpieza de los datos brutos hasta el entrenamiento definitivo) de forma nativa, ejecuta los scripts en la terminal siguiendo este orden cronológico:
+    Preprocesamiento e Ingeniería de Características:
+        Limpia el dataset original y calcula de forma automatizada los índices de color ($u-g$, $g-r$, $r-i$, $i-z$) guardando los archivos resultantes en la carpeta data/processed/.Bashpython src/data_processing.py
+    Entrenamiento y Optimización de Modelos (GridSearchCV):
+        Ejecuta la validación cruzada y la búsqueda en rejilla para encontrar los hiperparámetros óptimos de Random Forest y XGBoost.
+        Al finalizar, guarda las métricas de rendimiento en reports/ y los mejores cerebros (.pkl) en models/.Bashpython src/compare_models.py
 
-Python 3.10 o superior.
+## 🛠️ Requisitos PreviosAntes de ejecutar la aplicación web o los experimentos, asegúrate de tener instalado:
+    Python 3.10 o superior.Docker y Docker Desktop (si deseas ejecutar la versión contenerizada).
 
-Docker y Docker Desktop (si deseas ejecutar la versión contenerizada).
+## 🚀 Instrucciones de Ejecución de la Aplicación (GUI)Tienes dos métodos para arrancar y probar la interfaz gráfica interactiva:
+    Opción A: Ejecución Nativa (Entorno Local)Clonar el repositorio y acceder a la carpeta del proyecto:
+    git clone [https://github.com/TU_USUARIO/Desarrollo_TFG.git](https://github.com/TU_USUARIO/Desarrollo_TFG.git)
+    cd Desarrollo_TFG
 
-Git (para la gestión del repositorio).
+    Instalar las dependencias requeridas:
+        pip install -r requirements.txt
 
-🚀 Instrucciones de Ejecución
-Tienes dos métodos para arrancar y probar este proyecto:
+    Lanzar la Aplicación Web (Streamlit):
+        streamlit run src/app.py
 
-Opción A: Ejecución Nativa (Entorno Local)
-Clonar el repositorio y acceder a la carpeta del proyecto:
+    Opción B: Ejecución Automática (Con Docker 🐋)Esta opción no requiere que tengas instalado Python ni ninguna librería en tu equipo. Docker se encarga de aislar y empaquetar todo el sistema con sus puertos mapeados automáticamente.Asegúrate de tener Docker Desktop abierto.Abre la terminal en la raíz del proyecto y enciende la máquina con un único comando:
+        docker compose up
+    Abre tu navegador e ingresa a: http://localhost:8501
+    Para apagar y detener el contenedor de forma segura, ejecuta:
+        docker compose down
 
-Bash
-git clone [https://github.com/TU_USUARIO/Desarrollo_TFG.git](https://github.com/TU_USUARIO/Desarrollo_TFG.git)
-cd Desarrollo_TFG
-Crear y activar un entorno virtual (Recomendado para evitar conflictos de librerías):
+## 🧪 Experimentos de Control Incluidos
+    El repositorio incluye herramientas para reproducir los hitos científicos descritos en la memoria académica relativos al sesgo por Data Leakage:
+        Demostración de Data Leakage (F1-Score con Redshift):
+            Muestra cómo la inclusión de la variable espectroscópica redshift genera un modelo sesgado y artificialmente perfecto del 99.9% usando las 100.000 líneas de datos.
+                python src/redshift_leakage.py
 
-Bash
-# En Windows:
-python -m venv .venv
-.venv\Scripts\activate
-Instalar las dependencias requeridas:
+        Análisis de Importancia de Variables (Gráficos ciculares):
+            Genera las figuras comparativas que demuestran cómo el redshift fagocita la atención de ambos algoritmos frente al reparto limpio del enfoque fotométrico.
+                python src/importance_features.py
 
-Bash
-pip install -r requirements.txt
-Lanzar la Aplicación Web (Streamlit):
-
-Bash
-streamlit run src/app.py
-La aplicación se abrirá automáticamente en tu navegador en la dirección: http://localhost:8501
-
-Opción B: Ejecución Profesional Automática (Con Docker 🐋)
-Esta opción no requiere que tengas instalado Python ni ninguna librería en tu equipo. Docker se encarga de aislar y empaquetar todo el sistema de forma portátil.
-
-Asegúrate de tener Docker Desktop abierto.
-
-Abre la terminal en la raíz del proyecto y enciende la máquina con un único comando:
-
-Bash
-docker compose up
-Una vez finalice la construcción automática, abre tu navegador e ingresa a:
-
-Plaintext
-http://localhost:8501
-Para apagar y detener el contenedor de forma segura, ejecuta en la terminal:
-
-Bash
-docker compose down
-🧪 Experimentos de Control Incluidos
-El repositorio incluye herramientas para reproducir los hitos científicos descritos en la memoria académica:
-
-Demostración de Data Leakage (F1-Score con Redshift):
-Para comprobar cómo la inclusión de la variable espectroscópica redshift genera un modelo sesgado e artificialmente perfecto del 99.9%, ejecuta:
-
-Bash
-python src/demo_redshift_leakage.py
-Análisis de Importancia de Variables (Gráficos de Tarta):
-Para regenerar la comparativa visual de cómo los modelos distribuyen sus decisiones con y sin la presencia del redshift, ejecuta:
-
-Bash
-python src/plot_importance_pie.py
-💡 Trabajo de Fin de Grado desarrollado en la convocatoria de 2026 | Adrián Silva Sánchez
+## Trabajo de Fin de Grado | GIISI | 2ªConvocatoria de 2026 | Adrián Silva Sánchez
