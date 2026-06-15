@@ -12,13 +12,18 @@ Desarrollo_TFG/
 ├── data/                     # Datasets del proyecto (Raw y Processed)
 ├── models/                   # Modelos entrenados en formato serializado (.pkl)
 ├── reports/                  # Informes y figuras generadas para la memoria
-│   └── figures/              # Gráficas de rendimiento e importancia de variables
+│   └── figures/              # Gráficas de rendimiento y resultados
 ├── src/                      # Código fuente del proyecto
-│   ├── app.py                # Interfaz gráfica (GUI) con Streamlit
-│   ├── compare_models.py     # Script de evaluación de modelos (GridSearchCV)
-│   ├── data_processing.py    # Pipeline de limpieza e ingeniería de características
-│   ├── demo_redshift_leakage.py # Script del experimento de control (Data Leakage)
-│   └── plot_importance_pie.py   # Generador de gráficos de tarta de importancia
+│   ├── __init__.py           # Inicialización del módulo Python
+│   ├── app.py                # Interfaz gráfica con Streamlit
+│   ├── data_processing.py    # Limpieza e ingeniería de características y datos
+│   ├── final_test.py         # Script de evaluación comparativa final de los modelos
+│   ├── importance_features.py # Generador de gráficos circulares de importancia de características
+│   ├── learning_curves_random_forest.py # Análisis de características basicas (RF)
+│   ├── learning_curves_xgboost.py       # Análisis de características basicas (XGB)
+│   ├── optimize_random_forest.py        # Ajuste de hiperparámetros (GridSearchCV RF)
+│   ├── optimize_xgboost.py              # Ajuste de hiperparámetros (GridSearchCV XGB)
+│   └── redshift_leakage.py   # Script del experimento de control (Data Leakage)
 ├── Dockerfile                # Configuración de la imagen de Docker
 ├── docker-compose.yml        # Automatización del entorno multi-contenedor
 ├── requirements.txt          # Dependencias del proyecto de Python
@@ -41,21 +46,19 @@ Si deseas replicar el ciclo de vida completo del desarrollo del modelo (desde la
     Python 3.10 o superior.Docker y Docker Desktop (si deseas ejecutar la versión contenerizada).
 
 ## 🚀 Instrucciones de Ejecución de la Aplicación (GUI)Tienes dos métodos para arrancar y probar la interfaz gráfica interactiva:
-    Opción A: Ejecución Nativa (Entorno Local)Clonar el repositorio y acceder a la carpeta del proyecto:
-    git clone [https://github.com/TU_USUARIO/Desarrollo_TFG.git](https://github.com/TU_USUARIO/Desarrollo_TFG.git)
-    cd Desarrollo_TFG
+    Opción A:
+        Instalar las dependencias requeridas:
+            pip install -r requirements.txt
 
-    Instalar las dependencias requeridas:
-        pip install -r requirements.txt
+        Lanzar la Aplicación Web (Streamlit):
+            streamlit run src/app.py
 
-    Lanzar la Aplicación Web (Streamlit):
-        streamlit run src/app.py
-
-    Opción B: Ejecución Automática (Con Docker 🐋)Esta opción no requiere que tengas instalado Python ni ninguna librería en tu equipo. Docker se encarga de aislar y empaquetar todo el sistema con sus puertos mapeados automáticamente.Asegúrate de tener Docker Desktop abierto.Abre la terminal en la raíz del proyecto y enciende la máquina con un único comando:
-        docker compose up
-    Abre tu navegador e ingresa a: http://localhost:8501
-    Para apagar y detener el contenedor de forma segura, ejecuta:
-        docker compose down
+    Opción B:
+        Ejecución Automática (Con Docker 🐋)Esta opción no requiere que tengas instalado Python ni ninguna librería en tu equipo. Docker se encarga de aislar y empaquetar todo el sistema con sus puertos mapeados automáticamente.Asegúrate de tener Docker Desktop abierto.Abre la terminal en la raíz del proyecto y enciende la máquina con un único comando:
+            docker compose up
+        Abre tu navegador e ingresa a: http://localhost:8501
+        Para apagar y detener el contenedor de forma segura, ejecuta:
+            docker compose down
 
 ## 🧪 Experimentos de Control Incluidos
     El repositorio incluye herramientas para reproducir los hitos científicos descritos en la memoria académica relativos al sesgo por Data Leakage:
