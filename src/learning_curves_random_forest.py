@@ -63,7 +63,7 @@ def generar_curvas_aprendizaje():
     plt.ylabel('F1-Score (%)', fontsize=10)
     plt.grid(True, linestyle='--', alpha=0.5, zorder=1)
     plt.xlim(2000, 73000)
-    plt.ylim(60, 100)
+    plt.ylim(75, 100)
     plt.savefig(os.path.join(ruta_figuras, 'curva_aprendizaje_galaxias_RF.png'), dpi=300, bbox_inches='tight')
     plt.close()
 
@@ -76,7 +76,7 @@ def generar_curvas_aprendizaje():
     plt.ylabel('F1-Score (%)', fontsize=10)
     plt.grid(True, linestyle='--', alpha=0.5, zorder=1)
     plt.xlim(2000, 73000)
-    plt.ylim(60, 100)
+    plt.ylim(75, 100)
     plt.savefig(os.path.join(ruta_figuras, 'curva_aprendizaje_cuasares_RF.png'), dpi=300, bbox_inches='tight')
     plt.close()
 
@@ -89,7 +89,7 @@ def generar_curvas_aprendizaje():
     plt.ylabel('F1-Score (%)', fontsize=10)
     plt.grid(True, linestyle='--', alpha=0.5, zorder=1)
     plt.xlim(2000, 73000)
-    plt.ylim(60, 100)
+    plt.ylim(75, 100)
     plt.savefig(os.path.join(ruta_figuras, 'curva_aprendizaje_estrellas_RF.png'), dpi=300, bbox_inches='tight')
     plt.close()
 
