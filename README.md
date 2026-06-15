@@ -7,7 +7,7 @@ La solución incluye la ingeniería de datos, el entrenamiento optimizado de mod
 ---
 
 ## 📁 Estructura del Proyecto
-
+```text
 Desarrollo_TFG/
 ├── data/                     # Datasets del proyecto (Raw y Processed)
 ├── models/                   # Modelos entrenados en formato serializado (.pkl)
@@ -23,14 +23,19 @@ Desarrollo_TFG/
 ├── docker-compose.yml        # Automatización del entorno multi-contenedor
 ├── requirements.txt          # Dependencias del proyecto de Python
 └── README.md                 # Guía de uso y documentación (este archivo)
-
+```
 ## 🔄 Flujo de Trabajo y Ejecución de Scripts Básicos
 Si deseas replicar el ciclo de vida completo del desarrollo del modelo (desde la limpieza de los datos brutos hasta el entrenamiento definitivo) de forma nativa, ejecuta los scripts en la terminal siguiendo este orden cronológico:
     Preprocesamiento e Ingeniería de Características:
-        Limpia el dataset original y calcula de forma automatizada los índices de color ($u-g$, $g-r$, $r-i$, $i-z$) guardando los archivos resultantes en la carpeta data/processed/.Bashpython src/data_processing.py
+        Limpia el dataset original y calcula de forma automatizada los índices de color ($u-g$, $g-r$, $r-i$, $i-z$) guardando los archivos resultantes en la carpeta data/processed/.
+            python src/data_processing.py
     Entrenamiento y Optimización de Modelos (GridSearchCV):
-        Ejecuta la validación cruzada y la búsqueda en rejilla para encontrar los hiperparámetros óptimos de Random Forest y XGBoost.
-        Al finalizar, guarda las métricas de rendimiento en reports/ y los mejores cerebros (.pkl) en models/.Bashpython src/compare_models.py
+        Ejecuta la validación cruzada y la búsqueda en rejilla para encontrar los hiperparámetros óptimos de Random Forest y XGBoost:
+            python src/optimize_random_forest.py
+            python src/optimize_xgboost.py
+        Al finalizar, guarda las métricas de rendimiento en reports/ y los mejores cerebros (.pkl) en models/.
+        Y luego podemos hacer el examen final comparando el mejor modelo de cada tipo con:
+            python src/final_test.py
 
 ## 🛠️ Requisitos PreviosAntes de ejecutar la aplicación web o los experimentos, asegúrate de tener instalado:
     Python 3.10 o superior.Docker y Docker Desktop (si deseas ejecutar la versión contenerizada).
