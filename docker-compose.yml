@@ -1,0 +1,8 @@
+services:
+  aplicacion_tfg:
+    build: .
+    image: tfg-clasificador-fotometrico:latest
+    container_name: clasificador_automatico
+    ports:
+      - "8501:8501"
+    restart: unless-stopped
