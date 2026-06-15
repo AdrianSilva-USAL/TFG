@@ -67,4 +67,4 @@ Si deseas replicar el ciclo de vida completo del desarrollo del modelo (desde la
             Genera las figuras comparativas que demuestran cómo el redshift fagocita la atención de ambos algoritmos frente al reparto limpio del enfoque fotométrico.
                 python src/importance_features.py
 
-## Trabajo de Fin de Grado | GIISI | 2ªConvocatoria de 2026 | Adrián Silva Sánchez
+Trabajo de Fin de Grado | GIISI | 2ªConvocatoria de 2026 | Adrián Silva Sánchez
